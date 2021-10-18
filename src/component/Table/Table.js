@@ -80,6 +80,7 @@ export default function TableAPI() {
           LOAD
         </Button>
         <Button
+          className="mx-1"
           onClick={() => {
             deleteUniversity();
           }}>

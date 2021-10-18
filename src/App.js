@@ -1,4 +1,3 @@
-import "./App.css";
 import {Header} from "./component/Header/Header";
 import Table from "./component/Table/Table";
 
