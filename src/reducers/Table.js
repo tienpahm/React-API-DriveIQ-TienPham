@@ -19,7 +19,6 @@ export const TableReducer = (state = table, {type, payload}) => {
     case ADD_TABLE_DATA:
       let newAddData = [...state.data];
       newAddData.push(state.data[0]);
-      // console.log(newAddData);
       return {...state, data: newAddData};
     default:
       return state;

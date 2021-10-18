@@ -2,33 +2,18 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addTableData, deleteTableData, getTableData} from "../../actions/table";
 import {Button, Table} from "antd";
-import {DELETE_TABLE_DATA} from "../../constants/actionsTypes";
+import {message} from "antd";
 
 export default function TableAPI() {
   const dispatch = useDispatch();
   const tableData = useSelector((state) => state.TableReducer);
-  console.log(tableData.data);
-
-  // useEffect(() => {
-  //   dispatch(getTableData());
-  // }, [dispatch]);
-
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
 
   const columns = [
+    {
+      title: "Code",
+      dataIndex: "alpha_two_code",
+      key: "code",
+    },
     {
       title: "Country",
       dataIndex: "country",
@@ -65,26 +50,51 @@ export default function TableAPI() {
     },
   ];
 
+  const error = () => {
+    message.error("Please load university list to begin");
+  };
+
+  const addUniversity = () => {
+    if (tableData.data.length !== 0) {
+      dispatch(addTableData());
+    } else {
+      error();
+    }
+  };
+
+  const deleteUniversity = () => {
+    if (tableData.data.length !== 0) {
+      dispatch(deleteTableData());
+    } else {
+      error();
+    }
+  };
+
   return (
     <div>
-      <Button
-        onClick={() => {
-          dispatch(getTableData());
-        }}>
-        LOAD
-      </Button>
-      <Button
-        onClick={() => {
-          dispatch(deleteTableData());
-        }}>
-        DELETE
-      </Button>
-      <Button
-        onClick={() => {
-          dispatch(addTableData());
-        }}>
-        ADD
-      </Button>
+      <div className="mb-2">
+        <Button
+          onClick={() => {
+            dispatch(getTableData());
+          }}>
+          LOAD
+        </Button>
+        <Button
+          onClick={() => {
+            deleteUniversity();
+          }}>
+          DELETE
+        </Button>
+        <Button
+          onClick={() => {
+            addUniversity();
+          }}>
+          ADD
+        </Button>
+      </div>
+      <p className="font-italic">
+        Tips : Click <span>LOAD</span> to begin
+      </p>
       <Table dataSource={tableData.data} columns={columns} rowKey="name" />
     </div>
   );
