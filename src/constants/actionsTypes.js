@@ -1,1 +1,3 @@
 export const FETCH_TABLE_DATA = "FETCH_TABLE_DATA";
+export const DELETE_TABLE_DATA = "DELETE_TABLE_DATA";
+export const ADD_TABLE_DATA = "ADD_TABLE_DATA";

@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getTableData} from "../../actions/table";
-import {Table} from "antd";
+import {addTableData, deleteTableData, getTableData} from "../../actions/table";
+import {Button, Table} from "antd";
+import {DELETE_TABLE_DATA} from "../../constants/actionsTypes";
 
 export default function TableAPI() {
   const dispatch = useDispatch();
   const tableData = useSelector((state) => state.TableReducer);
   console.log(tableData.data);
 
-  useEffect(() => {
-    dispatch(getTableData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getTableData());
+  // }, [dispatch]);
 
   const dataSource = [
     {
@@ -66,7 +67,25 @@ export default function TableAPI() {
 
   return (
     <div>
-      <Table dataSource={tableData.data} columns={columns} />
+      <Button
+        onClick={() => {
+          dispatch(getTableData());
+        }}>
+        LOAD
+      </Button>
+      <Button
+        onClick={() => {
+          dispatch(deleteTableData());
+        }}>
+        DELETE
+      </Button>
+      <Button
+        onClick={() => {
+          dispatch(addTableData());
+        }}>
+        ADD
+      </Button>
+      <Table dataSource={tableData.data} columns={columns} rowKey="name" />
     </div>
   );
 }

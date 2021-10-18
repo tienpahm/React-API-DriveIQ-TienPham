@@ -1,5 +1,9 @@
 import * as api from "../api";
-import {FETCH_TABLE_DATA} from "../constants/actionsTypes";
+import {
+  ADD_TABLE_DATA,
+  DELETE_TABLE_DATA,
+  FETCH_TABLE_DATA,
+} from "../constants/actionsTypes";
 
 //Action creator
 
@@ -11,4 +15,18 @@ export const getTableData = () => async (dispatch) => {
   } catch (err) {
     console.log(err.message);
   }
+};
+
+export const deleteTableData = () => {
+  return {
+    type: DELETE_TABLE_DATA,
+    payload: null,
+  };
+};
+
+export const addTableData = () => {
+  return {
+    type: ADD_TABLE_DATA,
+    payload: null,
+  };
 };
