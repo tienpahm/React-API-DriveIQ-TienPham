@@ -14,10 +14,13 @@ export const TableReducer = (state = table, {type, payload}) => {
       return {...state, data: payload};
     case DELETE_TABLE_DATA:
       state.data.pop();
-      let new_data = [...state.data];
-      return {...state, data: new_data};
+      let newData = [...state.data];
+      return {...state, data: newData};
     case ADD_TABLE_DATA:
-      return {...state};
+      let newAddData = [...state.data];
+      newAddData.push(state.data[0]);
+      // console.log(newAddData);
+      return {...state, data: newAddData};
     default:
       return state;
   }
